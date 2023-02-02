@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Referral Link system</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <form method="post" action="/create_link">
+      <div class="form-group">
+        <label>User Name</label>
+        <input placeholder="Enter First Name"  id="username" name="username" class="form-control form-control-sm" />
+      </div>
+        <div class="form-group">
+        <label>District</label>
+        <input placeholder="Enter District"  id="district" name="district" class="form-control form-control-sm" />
+      </div>
+       <div class="form-group">
+        <label>location</label>
+        <input placeholder="Enter location"  id="location" name="location" class="form-control form-control-sm" />
+      </div>
+         <div class="form-group">
+        <label>contact NO</label>
+        <input placeholder="contact NO"  id="contact" name="contact" class="form-control form-control-sm" />
+      </div>
+      <div class="form-group">
+        <label>app link</label>
+        <input placeholder="app link"  id="app_link" name="app_link" class="form-control form-control-sm" />
+      </div>
+      <input type="submit" value="Create Link" id ="display" class="btn btn-sm btn-primary">
+    </form>
+    <br>
+  <br>
+  <table  class="table border" >
+      <tr>
+        <th>Username</th>
+        <th>District</th>
+        <th>Location</th>
+        <th>Contact no</th>
+        <th>app link</th>
+        <th>Code</th>
+        <th>Clicks</th>
+        <th>Conversions</th>
+      </tr>
+      {% for referral_link in referral_links %}
+      <tr>
+          <td>{{ referral_link.username }}</td>
+          <td>{{ referral_link.district }}</td>
+          <td>{{ referral_link.location }}</td>
+          <td>{{ referral_link.contact_number }}</td>
+          <td>{{referral_link.app_link}}</td>
+          <td>
+              <input type="text" value="{{host}}/referral/{{ referral_link.code }}" id="myInput-{{ referral_link.username }}">
+              
+          </td>
+          <td>{{ referral_link.clicks }}</td>
+          <td>{{ referral_link.conversions }}</td>
+      </tr>
+  {% endfor %}
+    </table>
+   
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js'>
+  </body>
+</html>
+
+
